@@ -74,9 +74,11 @@ def compute_lr_gradient(y, tx, w):
 def compute_lr_loss(y, tx, w):
     assert y.shape[0] == tx.shape[0]
     assert tx.shape[1] == w.shape[0]
+    print(tx.dot(w))
     y_star = sigmoid(tx.dot(w))
     _sum = 0
     for i in range(y.shape[0]):
+        print(y_star)
         _sum += (y[i] * math.log(y_star[i]) + (1 - y[i]) * np.log(1 - y_star[i]))
     return - _sum/(y.shape[0])
 
