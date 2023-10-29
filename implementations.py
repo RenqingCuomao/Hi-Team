@@ -102,7 +102,7 @@ def compute_gradient_mse(y, tx, w):
     return -tx.dot(e)/(y.shape[0])
 
 
-def mse_gd(y, tx, initial_w, max_iters, gamma):
+def mean_squared_error_gd(y, tx, initial_w, max_iters, gamma):
     w = initial_w
 
     for n_iter in range(max_iters):
@@ -111,7 +111,7 @@ def mse_gd(y, tx, initial_w, max_iters, gamma):
         loss = compute_mse(y, tx, w)
     return w, loss
 
-def mse_sgd(y, tx, initial_w, batch_size, max_iters, gamma):
+def mean_squared_error_sgd(y, tx, initial_w, batch_size, max_iters, gamma):
     w = initial_w
 
     for n_iter in range(max_iters):
@@ -136,14 +136,10 @@ def ridge_regression(y, tx, lambda_):
     return w, compute_mse(y, tx, w)
 
 
-def logistic_regression_gd(y, tx, initial_w, max_iters, gamma, reg=False):
-    # if reg is set True, penalty will be applied, which means 'Regularized'
+def logistic_regression(y, tx, initial_w, max_iters, gamma):
     w = initial_w
     for i in range(max_iters):
         gradient = compute_lr_gradient(y, tx, w)
-
-        if reg:
-            gradient = gradient + 2 * lambda_ * w
 
         w = w - gamma * gradient
         print(w)
@@ -153,3 +149,15 @@ def logistic_regression_gd(y, tx, initial_w, max_iters, gamma, reg=False):
         print(f"Iteration {i}: Loss = {loss}") 
     return w, loss
 
+def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
+    w = initial_w
+    for i in range(max_iters):
+        gradient = compute_lr_gradient(y, tx, w)
+        gradient = gradient + 2 * lambda_ * w
+        w = w - gamma * gradient
+        print(w)
+        print(gradient)
+        print(gamma)
+        loss = compute_lr_loss(y, tx, w)
+        print(f"Iteration {i}: Loss = {loss}") 
+    return w, loss
