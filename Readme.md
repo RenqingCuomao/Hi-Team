@@ -1,4 +1,4 @@
-# Machine Learning Project 1 (2023): Machine learning application for coronary heart disease (MICHD)
+# Machine Learning Project 1 (2023): Machine Learning for Predicting Cardiovascular Diseases
 
 In this project, we collected some characteristics of individual lifestyle factors and the incidence of coronary heart disease. We used regularized logistic regression to conduct classification training and predict the incidence of different populations.
 Detailed project outlines and requirements can be found in the [project description](./project1_description.pdf). 
